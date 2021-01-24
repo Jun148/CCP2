@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block body %}
+<div class="cart-container">
+    <a href="{{ path('main') }}">Back to shop</a>
+    <h1>Your Cart</h1>
+    {% if items | length > 0 %}
+    <table>
+        <thead>
+            <tr>
+                <th>Article</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                {% for image in item.article.images %}
+                <td class="lib"><a href="{{ path('article_front', {'id': item.article.id}) }}" ><img src="{{ vich_uploader_asset(image) }}">{{ item.article.name }}</a></td>
+                {% endfor %}
+                <td>{{ item.article.price }}$</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.article.price * item.quantity }}$</td>
+                <td>
+                    <a href="{{ path('cart_remove', {'id': item.article.id}) }}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <td colspan="3" class="total">Total: </td>
+            <td>{{ total }}$</td>
+            <td></td>
+        </tfoot>
+    </table>
+    <div><button type="submit" class="btn btn-primary" href="#">Valider la commande</button></div>
+</div>
+{% else %}
+    <p class="emptycart"> Your cart is empty!</p>
+{% endif %}
+{% endblock %}

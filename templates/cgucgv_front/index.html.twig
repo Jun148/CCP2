@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CGU CGV{% endblock %}
+
+{% block body %}
+<div class="CGU">
+    <div class="CGU-Title">{{ cgucgv.title}}</div>
+    <hr>
+    <div class="CGU-Description">{{ cgucgv.description|raw}}</div>
+</div>
+{% endblock %}

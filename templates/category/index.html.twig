@@ -1,0 +1,38 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>Category index</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.Name }}</td>
+                <td>
+                    <a href="{{ path('category_show', {'id': category.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}" class="bg-warning">edit</a>
+                    <a href="{{ path('category_delete', {'id': category.id}) }}" class="bg-danger">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('category_new') }}" class="bg-success">Create new</a>
+</div>
+{% endblock %}

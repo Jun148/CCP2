@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block body %}
+<div class="profile">
+    {% for message in app.flashes('message') %}
+    <div>
+        <div class="message"> {{message}}</div>
+    </div>
+    {% endfor %}
+    <h1>Your profil</h1>
+    <hr>
+    <table>
+        <tbody>
+            <tr>
+                <td>First Name:</td>
+                <td>{{ app.user.firstname }}</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td>{{ app.user.lastname }}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>{{ app.user.address }}</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td>{{ app.user.city }}</td>
+            </tr>
+            <tr>
+                <td>Zip Code:</td>
+                <td>{{ app.user.zipcode }}</td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-sm btn-primary" href="{{ path('user_profile_edit') }}">Modifier le profile</a></td>
+                <td><a class="btn btn-sm btn-primary" href="{{ path('user_password_edit') }}">Modifier le mot de passe</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

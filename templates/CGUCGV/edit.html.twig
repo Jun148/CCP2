@@ -1,0 +1,15 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Edit CGUCGV{% endblock %}
+
+{% block body %}
+<div class="editcgu">
+    <h1>Edit CGUCGV</h1>
+    <br>
+    {{ include('cgucgv/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('c_g_u_c_g_v_index') }}">back to list</a>
+
+    {{ include('cgucgv/_delete_form.html.twig') }}
+</div>
+{% endblock %}

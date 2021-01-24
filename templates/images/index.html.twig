@@ -1,0 +1,38 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Images index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>Images index</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.id }}</td>
+                <td> <img src="{{ vich_uploader_asset(image) }}"></td>
+                <td>
+                    <a href="{{ path('images_show', {'id': image.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('images_edit', {'id': image.id}) }}" class="bg-warning">edit</a>
+                    <a href="{{ path('images_delete', {'id': image.id}) }}" class="bg-danger">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('images_new') }}" class="bg-success">Create new</a>
+</div>
+{% endblock %}

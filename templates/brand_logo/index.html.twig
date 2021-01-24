@@ -1,0 +1,40 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}BrandLogo index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>BrandLogo index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand_logo in brand_logos %}
+            <tr>
+                <td>{{ brand_logo.id }}</td>
+                <td>{{ brand_logo.Name }}</td>
+                <td><img src="{{ vich_uploader_asset(brand_logo.image, 'imageFile') }}"></td>
+                <td>
+                    <a href="{{ path('brand_logo_show', {'id': brand_logo.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('brand_logo_edit', {'id': brand_logo.id}) }}" class="bg-warning">edit</a>
+                    <a href="{{ path('brand_logo_delete', {'id': brand_logo.id}) }}" class="bg-danger">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('brand_logo_new') }}">Create new</a>
+</div>
+{% endblock %}

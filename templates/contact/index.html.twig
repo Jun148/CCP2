@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+<section class="content5 cid-s329JSYoFs" id="content05-y">
+
+    
+    <div class="container">
+        <div class="mbr-row">
+            <div class="mbr-col-lg-6 mbr-col-md-12 mbr-col-sm-12">
+                <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-3 align-left display-2">Product Care and Tips</h3>
+                <p class="mbr-fonts-style mbr-text align-left display-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+                    sollicitudin orci vel risus ultricies semper.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="form form1 cid-s329Ka5vg5" id="form01-16">
+    
+    
+    <div class="container">
+        <div class="mbr-row">
+            <div class="mbr-col-lg-12 mbr-col-md-12 mbr-pb-5 mbr-col-sm-12">
+                <h2 class="mbr-section-title mbr-fonts-style mbr-pb-3 align-left display-2">Contact us</h2>
+                <h3 class="mbr-fonts-style mbr-subtitle align-left display-7">Let us know how we can help you.</h3>
+            </div>
+
+            <div class="mbr-col-lg-6 mbr-col-md-12 mbr-col-sm-12 md-pb mbr-form" data-form-type="formoid">
+
+
+
+
+                <!--Formbuilder Form-->
+                {{ form_start(contact) }}
+                {{ form_widget(contact) }}
+
+                <div class="mbr-col-auto"><button type="submit" class="btn btn-black display-7">Send</button></div>
+                
+                        
+                <span class="gdpr-block">
+                    <label>
+                        <span class="textGDPR" style="color: #a7a7a7"><input type="checkbox" name="gdpr" id="gdpr-form01-16" required="">By continuing you agree to our <a style="color: #767676; text-decoration: none;" href="terms.html">Terms of Service</a> and <a style="color: #767676; text-decoration: none;" href="policy.html">Privacy Policy</a>.</span>
+                    </label>
+                </span>
+                {{ form_end(contact) }}
+                <!--Formbuilder Form-->
+            </div>
+
+            <div class="mbr-col-lg-3 mbr-col-md-12 mbr-col-sm-12">
+                <div class="item">
+                    <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-1 align-left display-7"><strong>Information&nbsp;</strong></h3>
+                    <p class="mbr-fonts-style mbr-text align-left display-4">support@yoursite.com</p>
+                </div>
+
+                <div class="item">
+                    <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-1 align-left display-7"><strong>Customer service</strong></h3>
+                    <p class="mbr-fonts-style mbr-text align-left display-4">support@yoursite.com</p>
+                </div>
+
+                <div class="item">
+                    <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-1 align-left display-7"><strong>Sales</strong></h3>
+                    <p class="mbr-fonts-style mbr-text align-left display-4">support@yoursite.com</p>
+                </div>
+
+                <div class="item">
+                    <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-1 align-left display-7"><strong>Press</strong></h3>
+                    <p class="mbr-fonts-style mbr-text align-left display-4">support@yoursite.com</p>
+                </div>
+
+                <div class="item">
+                    <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-1 align-left display-7"><strong>Follow us</strong></h3>
+                    <p class="mbr-fonts-style mbr-text align-left display-4">Instagram
+                        <br>Pinterest
+                        <br>Twitter
+                        <br>Facebook</p>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</section>
+{% endblock %}

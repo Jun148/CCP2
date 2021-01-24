@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}New CGUCGV{% endblock %}
+
+{% block body %}
+<div class="addnewcgu">
+    <h1>Create new CGUCGV</h1>
+    <br>
+    {{ include('cgucgv/_form.html.twig') }}
+
+    <a href="{{ path('c_g_u_c_g_v_index') }}">back to list</a>
+</div>
+{% endblock %}

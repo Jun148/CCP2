@@ -1,0 +1,28 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Gender{% endblock %}
+
+{% block body %}
+<div class="show">
+    <h1>Gender</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gender.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ gender.Name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('gender_index') }}">back to list</a>
+
+    <a href="{{ path('gender_edit', {'id': gender.id}) }}">edit</a>
+
+    {{ include('gender/_delete_form.html.twig') }}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Hello InboxController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Replied?</th>
+            <th>Actions</th>
+        </thead>
+
+        <tbody>
+        {% for contact in contacts %}
+            <tr class={{ contact.reply ? '' : 'bg-warning' }}>
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.fullname }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.reply ? "Yes" : "No" }}</td>
+                <td><a href="{{ path('read_inbox', {'id':contact.id}) }}" class="btn btn-sm btn-success">Check</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+<div class="categories">
+  <h1>Sunglasses<h1>
+  <h2>Women<h2>
+</div>
+
+<div class="options">
+  <h3>Gender:</h3>
+  <div>
+    <input type="checkbox" id="men" name="men"
+         checked>
+    <label for="men">Men</label>
+  </div>
+  <div>
+    <input type="checkbox" id="women" name="women"
+         checked>
+    <label for="women">Women</label>
+  </div>
+</div>
+
+<div class="articlecard-container">
+  {% for article in articles %}
+  <div class="articlecard">
+    {% for image in article.images %}
+    <img class="articlecard-image" src="{{ vich_uploader_asset(image) }}" alt="">
+    {% endfor %}
+    <hr>
+    <div class="articlecard-body">
+      <h5 class="articlecard-name">{{ article.name }}</h5>
+      <br>
+      <p class="articlecard-description">{{ article.description }}</p>
+      <br>
+      <a class="btn btn-primary" href="{{ path('article_front', {'id': article.id}) }}">Check more</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
