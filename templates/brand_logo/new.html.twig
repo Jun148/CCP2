@@ -3,9 +3,11 @@
 {% block title %}New BrandLogo{% endblock %}
 
 {% block body %}
+<div class="addnew">
     <h1>Create new BrandLogo</h1>
-
+    <br>
     {{ include('brand_logo/_form.html.twig') }}
 
     <a href="{{ path('brand_logo_index') }}">back to list</a>
+</div>
 {% endblock %}

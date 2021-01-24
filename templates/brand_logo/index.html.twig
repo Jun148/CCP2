@@ -24,7 +24,7 @@
                 <td>
                     <a href="{{ path('brand_logo_show', {'id': brand_logo.id}) }}" class="bg-info">show</a>
                     <a href="{{ path('brand_logo_edit', {'id': brand_logo.id}) }}" class="bg-warning">edit</a>
-                    <a href="{{ path('brand_logo_delete', {'id': brand_logo.id}) }}" class="bg-danger">edit</a>
+                    <a href="{{ path('brand_logo_delete', {'id': brand_logo.id}) }}" class="bg-danger">delete</a>
                 </td>
             </tr>
         {% else %}
@@ -35,6 +35,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('brand_logo_new') }}">Create new</a>
+    <a href="{{ path('brand_logo_new') }}" class="bg-success">Create new</a>
 </div>
 {% endblock %}

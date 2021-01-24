@@ -1,0 +1,38 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}SiteName index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>SiteName index</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for site_name in site_names %}
+            <tr>
+                <td>{{ site_name.id }}</td>
+                <td>{{ site_name.Name }}</td>
+                <td>
+                    <a href="{{ path('site_name_show', {'id': site_name.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('site_name_edit', {'id': site_name.id}) }}" class="bg-success">edit</a>
+                    <a href="{{ path('site_name_delete', {'id': site_name.id}) }}" class="bg-danger">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('site_name_new') }}" class="bg-success">Create new</a>
+</div>
+{% endblock %}

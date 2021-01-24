@@ -55,8 +55,7 @@
         <div class="menu-container container-fluid mbr-px-2">
             <!-- SHOW LOGO -->
             <div class="navbar-brand">
-                
-                <span class="navbar-caption-wrap"><a class="navbar-caption  text-black display-6 display-5" href="{{ path('main_admin') }}">ProductAMP</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption  text-black display-6 display-5" href="{{ path('main_admin') }}">Admin</a></span>
             </div>
             <!-- SHOW LOGO END -->
             <!-- COLLAPSED MENU -->
@@ -89,7 +88,7 @@
                         <a  class="nav-link link dropdown-toggle text-black display-4" href="">Site Configuration</a>
                         <div class="dropdown-menu">
                             <a  class="dropdown-item text-black display-4" href=" {{ path('brand_logo_index') }}">Brandlogo</a>
-                            <a  class="dropdown-item text-black display-4" href="" aria-expanded="false">blabla</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('site_name_index') }}" aria-expanded="false">SiteName</a>
                         </div>
                     </li>
                     {% if app.user %}

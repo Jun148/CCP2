@@ -74,7 +74,7 @@
             <!-- SHOW LOGO -->
             <div class="navbar-brand">
                 
-                <span class="navbar-caption-wrap"><a class="navbar-caption  text-black display-6 display-5" href="{{ path('main') }}">ProductAMP</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption  text-black display-6 display-5" href="{{ path('main') }}">{{ sitename.name }}</a></span>
             </div>
             <!-- SHOW LOGO END -->
             <!-- COLLAPSED MENU -->
@@ -117,8 +117,8 @@
                         </div>
                     </li>
                     {% endif %}
-                    <li class="cart-ico"><a href="{{ path('cart') }}" aria-expanded="false"><img src="{{ asset('assets/img/shopping-cart.png') }}"</a></li>
                 </ul>
+                <a class="cart-ico" href="{{ path('cart') }}" aria-expanded="false"><img src="{{ asset('assets/img/shopping-cart-solid.svg') }}"</a>
 
                         
                 <!-- NAVBAR ITEMS END -->

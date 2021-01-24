@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}New SiteName{% endblock %}
+
+{% block body %}
+<div class="addnew">
+    <h1>Create new SiteName</h1>
+    <br>
+    {{ include('site_name/_form.html.twig') }}
+
+    <a href="{{ path('site_name_index') }}">back to list</a>
+</div>
+{% endblock %}

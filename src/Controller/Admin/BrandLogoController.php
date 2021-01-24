@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\BrandLogo;
 use App\Form\BrandLogoType;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/brand/logo")
+ * @Route("admin/brand/logo")
  */
 class BrandLogoController extends AbstractController
 {

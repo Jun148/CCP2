@@ -1,0 +1,28 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}SiteName{% endblock %}
+
+{% block body %}
+<div class="show">
+    <h1>SiteName</h1>
+    <br>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ site_name.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ site_name.Name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('site_name_index') }}">back to list</a>
+
+    <a href="{{ path('site_name_edit', {'id': site_name.id}) }}">edit</a>
+
+    {{ include('site_name/_delete_form.html.twig') }}
+</div>
+{% endblock %}

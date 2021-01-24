@@ -3,11 +3,13 @@
 {% block title %}Edit BrandLogo{% endblock %}
 
 {% block body %}
+<div class="edit">
     <h1>Edit BrandLogo</h1>
-
+    <br>
     {{ include('brand_logo/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('brand_logo_index') }}">back to list</a>
 
     {{ include('brand_logo/_delete_form.html.twig') }}
+</div>
 {% endblock %}
