@@ -26,9 +26,6 @@ class CartController extends AbstractController
         foreach($cart as $id => $quantity) {
             $cartWithData[] = [
                 'article' => $articleRepository->find($id),
-                'headshop' => $headShopRepository->findOneBy([], [
-                    'id' => 'DESC'
-                ]),
                 'quantity' => $quantity
             ];
         }
@@ -42,6 +39,9 @@ class CartController extends AbstractController
             'genders' => $genderRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
             'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+            'headshop' => $headShopRepository->findOneBy([], [
                 'id' => 'DESC'
             ]),
             'items' => $cartWithData,
