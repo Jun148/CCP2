@@ -73,6 +73,11 @@ class Images
      */
     private $brandlogo;
 
+    /**
+     * @ORM\OneToOne(targetEntity=ProductCare::class, inversedBy="image", cascade={"persist", "remove"})
+     */
+    private $Productcare;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -129,6 +134,18 @@ class Images
     public function setBrandlogo(?BrandLogo $brandlogo): self
     {
         $this->brandlogo = $brandlogo;
+
+        return $this;
+    }
+
+    public function getProductcare(): ?ProductCare
+    {
+        return $this->Productcare;
+    }
+
+    public function setProductcare(?ProductCare $Productcare): self
+    {
+        $this->Productcare = $Productcare;
 
         return $this;
     }

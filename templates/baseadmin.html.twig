@@ -87,8 +87,10 @@
                     <li class="nav-item dropdown">
                         <a  class="nav-link link dropdown-toggle text-black display-4" href="">Site Configuration</a>
                         <div class="dropdown-menu">
-                            <a  class="dropdown-item text-black display-4" href=" {{ path('brand_logo_index') }}">Brandlogo</a>
                             <a  class="dropdown-item text-black display-4" href=" {{ path('site_name_index') }}" aria-expanded="false">SiteName</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('product_care_index') }}" aria-expanded="false">ProductCare</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('brand_logo_index') }}" aria-expanded>Brandlogo</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('features_index') }}" aria-expanded="false">Features</a>
                         </div>
                     </li>
                     {% if app.user %}

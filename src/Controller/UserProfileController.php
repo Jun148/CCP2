@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\UserProfileType;
 use App\Repository\CategoryRepository;
 use App\Repository\GenderRepository;
+use App\Repository\SiteNameRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +18,14 @@ class UserProfileController extends AbstractController
     /**
      * @Route("/user/profile", name="user_profile")
      */
-    public function index(UserRepository $userRepository, GenderRepository $genderRepository, CategoryRepository $categoryRepository): Response
+    public function index(UserRepository $userRepository, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository): Response
     {
         return $this->render('user_profile/index.html.twig', [
             'controller_name' => 'UserProfileController',
             'genders' => $genderRepository->findAll(),
+            'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
             'categories' => $categoryRepository->findAll(),
         ]);
     }

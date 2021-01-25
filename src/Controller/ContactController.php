@@ -7,6 +7,7 @@ use App\Form\ContactType;
 use App\Repository\CategoryRepository;
 use App\Repository\GenderRepository;
 use App\Repository\ContactRepository;
+use App\Repository\SiteNameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request, GenderRepository $genderRepository, CategoryRepository $categoryRepository): Response
+    public function index(Request $request, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -37,6 +38,9 @@ class ContactController extends AbstractController
             'controller_name' => 'ContactController',
             'genders' => $genderRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
+            'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
             'contact' => $form->createView()
         ]);
     }

@@ -19,12 +19,21 @@
         </thead>
         <tbody>
             {% for item in items %}
+            <pre>
+                {{ dump(item) }}
+            </pre>
             <tr>
                 {% for image in item.article.images %}
                 <td class="lib"><a href="{{ path('article_front', {'id': item.article.id}) }}" ><img src="{{ vich_uploader_asset(image) }}">{{ item.article.name }}</a></td>
                 {% endfor %}
                 <td>{{ item.article.price }}$</td>
-                <td>{{ item.quantity }}</td>
+                <td>
+                    <div class="quantity">
+                        <button type="button">-</button>
+                        <input  type="text" size="1" value="{{ item.quantity }}">
+                        <button type="button">+</button>
+                    </div>
+                </td>
                 <td>{{ item.article.price * item.quantity }}$</td>
                 <td>
                     <a href="{{ path('cart_remove', {'id': item.article.id}) }}" class="btn btn-primary btn-sm">
@@ -40,7 +49,7 @@
             <td></td>
         </tfoot>
     </table>
-    <div><button type="submit" class="btn btn-primary" href="#">Valider la commande</button></div>
+    <div><button type="submit" id="validate" class="btn btn-primary" href="#">Valider la commande</button></div>
 </div>
 {% else %}
     <p class="emptycart"> Your cart is empty!</p>

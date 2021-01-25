@@ -22,9 +22,16 @@
 	padding: 1vw;
 }
 
+.text-overflow {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
 .index {
-	width: 80%;
-	margin: 1vw auto;
+	width: 100%;
+	margin: 1vw 1vw;
 }
 
 .addnew, .edit {
@@ -33,7 +40,7 @@
 }
 
 .show {
-	width: 50%;
+	width: 70%;
 	margin: 1vw auto;
 }
 
@@ -48,7 +55,7 @@
 }
 
 .show img {
-	width: 70%;
+	width: 100%;
 	height: 100%;
 }
 
@@ -201,6 +208,17 @@
 	height: 4vw;
 }
 
+.cart-container .quantity {
+	display:flex;
+	margin: auto;
+	width: 5vw;
+}
+
+.cart-container .quantity input {
+	margin: 0 0.5vw;
+	text-align: center;
+}
+
 .lib a{
 	display: flex;
 	align-items: center;
@@ -217,7 +235,7 @@
 	margin: 4vw;
 }
 
-.cart-container button {
+.cart-container #validate {
 	display: block;
 	width: 30%;
 	margin: auto;
@@ -6564,6 +6582,7 @@ a:hover {
 	margin-bottom: 1rem;
 	color: #212529;
 	text-align: center;
+	table-layout: fixed;
 	}
 	
 	.table th,

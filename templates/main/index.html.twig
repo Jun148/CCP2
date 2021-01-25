@@ -55,9 +55,8 @@
     <div class="container">
         <div class="mbr-row">
             <div class="mbr-col-lg-6 mbr-col-md-12 mbr-col-sm-12">
-                <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-3 align-left display-2">Product Care and Tips</h3>
-                <p class="mbr-fonts-style mbr-text align-left display-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                    sollicitudin orci vel risus ultricies semper.</p>
+                <h3 class="mbr-section-subtitle mbr-fonts-style mbr-pb-3 align-left display-2">{{ productcare.title}}</h3>
+                <p class="mbr-fonts-style mbr-text align-left display-5">{{ productcare.subtitle }}</p>
             </div>
         </div>
     </div>
@@ -70,7 +69,7 @@
         <div class="mbr-row">
             <div class="mbr-col-lg-6 mbr-col-md-12 img-col mbr-m-auto md-pb mbr-col-sm-12">
                 <div class="img-wrapper">
-                    <amp-img src="{{ asset('assets/img/background1.jpg') }}" alt="" width="651.8163265306123" height="779" layout="responsive" class="mobirise-loader mbr-m-auto align-center">
+                    <amp-img src="{{ vich_uploader_asset(productcare.image, 'imageFile') }}" alt="" width="651.8163265306123" height="779" layout="responsive" class="mobirise-loader mbr-m-auto align-center">
                         <div placeholder="" class="placeholder">
                                 <div class="mobirise-spinner">
                                     <em></em>
@@ -85,18 +84,7 @@
                 <div class="content">
                     
                     
-                    <p class="mbr-fonts-style mbr-text align-left mbr-pb-5  display-7">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Curabitur faucibus lorem sit amet fringilla lobortis. Cras nisl
-                        tellus, convallis a tristique sed, efficitur in ipsum. Aliquam elementum, arcu eu tincidunt
-                        molestie, urna lorem convallis elit, et vulputate nunc ligula nec leo. Proin placerat id lorem
-                        eu lobortis. Mauris molestie nibh eget neque varius posuere. Mauris porttitor aliquet nibh.
-                        Morbi at vulputate lacus, vel laoreet erat.
-                        <br>
-                        <br>Vestibulum viverra lacus ut ante consequat dictum. Cras lacinia est in libero tristique, nec
-                        fermentum est dapibus. Pellentesque id mauris lacinia, pellentesque augue ac, fringilla dui.
-                        Maecenas eu felis enim. Vestibulum eu pretium mauris, quis commodo nunc. Etiam risus turpis,
-                        dignissim quis eros malesuada, ullamcorper sollicitudin purus. Fusce eu blandit ligula. Nam erat
-                        nunc, pharetra nec feugiat vel, efficitur ut dui.<br></p>
+                    <p class="mbr-fonts-style mbr-text align-left mbr-pb-5  display-7">{{ productcare.text }}</p>
                     
                 </div>
             </div>

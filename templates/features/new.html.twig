@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}New Features{% endblock %}
+
+{% block body %}
+<div class="addnew">
+    <h1>Create new Features</h1>
+    <br>
+    {{ include('features/_form.html.twig') }}
+
+    <a href="{{ path('features_index') }}">back to list</a>
+</div>
+{% endblock %}

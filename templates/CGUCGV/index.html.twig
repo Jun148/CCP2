@@ -20,12 +20,10 @@
             <tr>
                 <td>{{ c_g_u_c_g_v.id }}</td>
                 <td>{{ c_g_u_c_g_v.Title }}</td>
-                <td>{{ c_g_u_c_g_v.Description|raw }}</td>
+                <td><span class="text-overflow">{{ c_g_u_c_g_v.Description }}</span></td>
                 <td>
                     <a href="{{ path('c_g_u_c_g_v_show', {'id': c_g_u_c_g_v.id}) }}" class="bg-info">show</a>
-                    <br><br>
                     <a href="{{ path('c_g_u_c_g_v_edit', {'id': c_g_u_c_g_v.id}) }}" class="bg-warning">edit</a>
-                    <br><br>
                     <a href="{{ path('c_g_u_c_g_v_delete', {'id': c_g_u_c_g_v.id}) }}" class="bg-danger">delete</a>
                 </td>
             </tr>

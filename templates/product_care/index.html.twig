@@ -1,0 +1,44 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}ProductCare index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>ProductCare index</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Text</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product_care in product_cares %}
+            <tr>
+                <td>{{ product_care.id }}</td>
+                <td>{{ product_care.Title }}</td>
+                <td><span class="text-overflow">{{ product_care.Subtitle }}</span></td>
+                <td><span class="text-overflow">{{ product_care.Text }}</span></td>
+                <td><img src="{{ vich_uploader_asset(product_care.image, 'imageFile') }}"></td>
+                <td>
+                    <a href="{{ path('product_care_show', {'id': product_care.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('product_care_edit', {'id': product_care.id}) }}" class="bg-warning">edit</a>
+                    <a href="{{ path('product_care_delete', {'id': product_care.id}) }}" class="bg-danger">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('product_care_new') }}" class="bg-success">Create new</a>
+</div>
+{% endblock %}

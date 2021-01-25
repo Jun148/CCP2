@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\ArticleRepository;
 use App\Repository\GenderRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\SiteNameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,7 @@ class CartController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function index(SessionInterface $session, GenderRepository $genderRepository, CategoryRepository $categoryRepository, ArticleRepository $articleRepository): Response
+    public function index(SessionInterface $session, GenderRepository $genderRepository, CategoryRepository $categoryRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository): Response
     {
         $cart = $session->get('cart', []);
         $cartWithData = [];
@@ -36,6 +37,9 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', [
             'genders' => $genderRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
+            'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
             'items' => $cartWithData,
             'total' => $total
         ]);
