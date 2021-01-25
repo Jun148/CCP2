@@ -1,0 +1,40 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}HeadShop{% endblock %}
+
+{% block body %}
+<div class="show">
+    <h1>HeadShop</h1>
+    <br>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ head_shop.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ head_shop.Title }}</td>
+            </tr>
+            <tr>
+                <th>Subtitle</th>
+                <td>{{ head_shop.Subtitle }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ head_shop.link }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ vich_uploader_asset(head_shop.image, 'imageFile') }}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('head_shop_index') }}">back to list</a>
+
+    <a href="{{ path('head_shop_edit', {'id': head_shop.id}) }}">edit</a>
+
+    {{ include('head_shop/_delete_form.html.twig') }}
+</div>
+{% endblock %}

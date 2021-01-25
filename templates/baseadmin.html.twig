@@ -73,9 +73,6 @@
                         <a class="nav-link link text-black display-4" href=" {{ path('article_index') }} ">Article</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link text-black display-4" href=" {{ path('images_index') }} ">Images</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link link text-black display-4" href=" {{ path('inbox') }} ">Inbox</a>
                     </li>
                     <li class="nav-item">
@@ -85,11 +82,21 @@
                         <a class="nav-link link text-black display-4" href=" {{ path('c_g_u_c_g_v_index') }} ">CGU/CGV</a>
                     </li>
                     <li class="nav-item dropdown">
+                        <a  class="nav-link link dropdown-toggle text-black display-4" href="">Images/Link</a>
+                        <div class="dropdown-menu">
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('images_index') }} " aria-expanded>Images</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('links_index') }}" aria-expanded="false">Links</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
                         <a  class="nav-link link dropdown-toggle text-black display-4" href="">Site Configuration</a>
                         <div class="dropdown-menu">
                             <a  class="dropdown-item text-black display-4" href=" {{ path('site_name_index') }}" aria-expanded="false">SiteName</a>
-                            <a  class="dropdown-item text-black display-4" href=" {{ path('product_care_index') }}" aria-expanded="false">ProductCare</a>
-                            <a  class="dropdown-item text-black display-4" href=" {{ path('brand_logo_index') }}" aria-expanded>Brandlogo</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('head_shop_index') }}" aria-expanded="false">Head Shop</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('learn_more_index') }}" aria-expanded="false">Learn More</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('product_care_index') }}" aria-expanded="false">Product Care</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('foot_shop_index') }}" aria-expanded="false">Foot Shop</a>
+                            <a  class="dropdown-item text-black display-4" href=" {{ path('brand_logo_index') }}" aria-expanded>Brand Logo</a>
                             <a  class="dropdown-item text-black display-4" href=" {{ path('features_index') }}" aria-expanded="false">Features</a>
                         </div>
                     </li>

@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}New FootShop{% endblock %}
+
+{% block body %}
+<div class="addnew">
+    <h1>Create new FootShop</h1>
+    <br>
+    {{ include('foot_shop/_form.html.twig') }}
+
+    <a href="{{ path('foot_shop_index') }}">back to list</a>
+</div>
+{% endblock %}

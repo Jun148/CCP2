@@ -1,0 +1,40 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}LearnMore index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>LearnMore index</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for learn_more in learn_mores %}
+            <tr>
+                <td>{{ learn_more.id }}</td>
+                <td>{{ learn_more.Title }}</td>
+                <td><span class="text-overflow">{{ learn_more.Text }}</span></td>
+                <td>
+                    <a href="{{ path('learn_more_show', {'id': learn_more.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('learn_more_edit', {'id': learn_more.id}) }}" class="bg-warning">edit</a>
+                    <a href="{{ path('learn_more_delete', {'id': learn_more.id}) }}" class="bg-danger">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('learn_more_new') }}" class="bg-success">Create new</a>
+</div>
+{% endblock %}

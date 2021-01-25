@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Form\UserProfileType;
-use App\Repository\CategoryRepository;
-use App\Repository\GenderRepository;
-use App\Repository\SiteNameRepository;
 use App\Repository\UserRepository;
+use App\Repository\GenderRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\HeadShopRepository;
+use App\Repository\SiteNameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,12 +19,15 @@ class UserProfileController extends AbstractController
     /**
      * @Route("/user/profile", name="user_profile")
      */
-    public function index(UserRepository $userRepository, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository): Response
+    public function index(UserRepository $userRepository, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository): Response
     {
         return $this->render('user_profile/index.html.twig', [
             'controller_name' => 'UserProfileController',
             'genders' => $genderRepository->findAll(),
             'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+            'headshop' => $headShopRepository->findOneBy([], [
                 'id' => 'DESC'
             ]),
             'categories' => $categoryRepository->findAll(),
@@ -33,7 +37,7 @@ class UserProfileController extends AbstractController
     /**
      * @Route("/user/profile/edit/", name="user_profile_edit")
      */
-    public function editProfile(Request $request, GenderRepository $genderRepository, CategoryRepository $categoryRepository)
+    public function editProfile(Request $request, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository)
     {
         $user = $this->getUser();
         $form = $this->createForm(UserProfileType::class, $user);
@@ -51,6 +55,12 @@ class UserProfileController extends AbstractController
         return $this->render('user_profile/editprofile.html.twig', [
             'form' => $form->createView(),
             'genders' => $genderRepository->findAll(),
+            'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+            'headshop' => $headShopRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
             'categories' => $categoryRepository->findAll(),
         ]);
     }
@@ -58,7 +68,7 @@ class UserProfileController extends AbstractController
     /**
      * @Route("/user/password/edit/", name="user_password_edit")
      */
-    public function editPassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, GenderRepository $genderRepository, CategoryRepository $categoryRepository)
+    public function editPassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository)
     {
         if($request->isMethod('POST')){
             $em = $this->getDoctrine()->getManager();
@@ -83,6 +93,12 @@ class UserProfileController extends AbstractController
         }
         return $this->render('user_profile/editpassword.html.twig', [
             'genders' => $genderRepository->findAll(),
+            'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+            'headshop' => $headShopRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
             'categories' => $categoryRepository->findAll(),
         ]);
     }

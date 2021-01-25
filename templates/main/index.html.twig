@@ -9,11 +9,8 @@
     <div class="container">
         <div class="mbr-row mbr-jc-c">
             <div class="mbr-col-lg-8 mbr-col-md-12 mbr-col-sm-12">
-                <h3 class="mbr-section-subtitle mbr-black mbr-fonts-style mbr-pb-1 align-center display-5">
-                    Learn more about our brand</h3>
-                <p class="mbr-fonts-style mbr-text align-center display-5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo suscipit vulputate.
-                    Maecenas rutrum mollis arcu, at condimentum lorem <a href="#" class="text-black">@mobirise</a>.</p>
+                <h3 class="mbr-section-subtitle mbr-black mbr-fonts-style mbr-pb-1 align-center display-5"> {{ learnmore.title }}</h3>
+                <p class="mbr-fonts-style mbr-text align-center display-5">{{ learnmore.text}}<a href="#" class="text-black">@mobirise</a>.</p>
             </div>
         </div>
     </div>
@@ -301,7 +298,7 @@
 
             <div class="mbr-col-lg-7 mbr-col-md-12  mbr-m-auto mbr-col-sm-12 md-pb">
                 <div class="img-wrapper">
-                    <amp-img src="{{ asset('assets/img/02.jpg') }}" alt="" width="766" height="766" layout="responsive" class="mobirise-loader mbr-m-auto align-center">
+                    <amp-img src="{{ vich_uploader_asset(footshop.image, 'imageFile') }}" alt="" width="766" height="766" layout="responsive" class="mobirise-loader mbr-m-auto align-center">
                         <div placeholder="" class="placeholder">
                                 <div class="mobirise-spinner">
                                     <em></em>
@@ -317,11 +314,9 @@
             <div class="mbr-col-lg-5 mbr-col-md-12 mbr-m-auto mbr-col-sm-12">
                 <div class="content">
                     
-                    <h1 class="mbr-section-title mbr-fonts-style align-left mbr-pb-2 display-2">Your Everyday Sunglasses</h1>
-                    <p class="mbr-fonts-style mbr-text align-left mbr-pb-5  display-7">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Nunc commodo ligula eget ex accumsan, in ultricies tellus vehicula
-                    </p>
-                    <div class="mbr-section-btn align-left"><a class="btn btn-md btn-warning-outline display-4" href="#"><span class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="19" height="19"><path d="M24 11l-6.7 6.7-1.4-1.4 4.3-4.3H0v-2h20.2l-4.3-4.3 1.4-1.4L24 11z"></path></svg></span>Shop Now</a>
+                    <h1 class="mbr-section-title mbr-fonts-style align-left mbr-pb-2 display-2">{{ footshop.title }}</h1>
+                    <p class="mbr-fonts-style mbr-text align-left mbr-pb-5  display-7">{{ footshop.subtitle }} </p>
+                    <div class="mbr-section-btn align-left"><a class="btn btn-md btn-warning-outline display-4" href="{{ footshop.link.path}}"><span class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="19" height="19"><path d="M24 11l-6.7 6.7-1.4-1.4 4.3-4.3H0v-2h20.2l-4.3-4.3 1.4-1.4L24 11z"></path></svg></span>Shop Now</a>
                     </div>
                 </div>
             </div>

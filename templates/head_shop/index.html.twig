@@ -1,0 +1,44 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}HeadShop index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>HeadShop index</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Image</th>
+                <th>Link</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for head_shop in head_shops %}
+            <tr>
+                <td>{{ head_shop.id }}</td>
+                <td>{{ head_shop.Title }}</td>
+                <td><span class="text-overflow">{{ head_shop.Subtitle }}</span></td>
+                <td><img src="{{ vich_uploader_asset(head_shop.image, 'imageFile') }}"></td>
+                <td>{{ head_shop.link }}</td>
+                <td>
+                    <a href="{{ path('head_shop_show', {'id': head_shop.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('head_shop_edit', {'id': head_shop.id}) }}" class="bg-warning">edit</a>
+                    <a href="{{ path('head_shop_delete', {'id': head_shop.id}) }}" class="bg-danger">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('head_shop_new') }}" class="bg-success">Create new</a>
+</div>
+{% endblock %}

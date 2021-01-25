@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Repository\CategoryRepository;
 use App\Repository\GenderRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\HeadShopRepository;
 use App\Repository\SiteNameRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -15,7 +16,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository): Response
+    public function login(AuthenticationUtils $authenticationUtils, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
@@ -31,6 +32,9 @@ class SecurityController extends AbstractController
             'error' => $error,
             'genders' => $genderRepository->findAll(),
             'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+            'headshop' => $headShopRepository->findOneBy([], [
                 'id' => 'DESC'
             ]),
             'categories' => $categoryRepository->findAll(),

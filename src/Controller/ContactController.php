@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Repository\CategoryRepository;
 use App\Repository\GenderRepository;
 use App\Repository\ContactRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\HeadShopRepository;
 use App\Repository\SiteNameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository): Response
+    public function index(Request $request, GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -39,6 +40,9 @@ class ContactController extends AbstractController
             'genders' => $genderRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
             'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+            'headshop' => $headShopRepository->findOneBy([], [
                 'id' => 'DESC'
             ]),
             'contact' => $form->createView()

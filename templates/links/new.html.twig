@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}New Links{% endblock %}
+
+{% block body %}
+<div class="addnew">
+    <h1>Create new Links</h1>
+    <br>
+    {{ include('links/_form.html.twig') }}
+
+    <a href="{{ path('links_index') }}">back to list</a>
+</div>
+{% endblock %}

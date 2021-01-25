@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}New LearnMore{% endblock %}
+
+{% block body %}
+<div class="addnew">
+    <h1>Create new LearnMore</h1>
+    <br>
+    {{ include('learn_more/_form.html.twig') }}
+
+    <a href="{{ path('learn_more_index') }}">back to list</a>
+</div>
+{% endblock %}

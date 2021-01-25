@@ -36,6 +36,16 @@ class Order
      */
     private $articles;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Status;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $Updated_At;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -96,6 +106,30 @@ class Order
                 $article->setOrd(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(string $Status): self
+    {
+        $this->Status = $Status;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->Updated_At;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $Updated_At): self
+    {
+        $this->Updated_At = $Updated_At;
 
         return $this;
     }

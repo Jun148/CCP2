@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\ArticleRepository;
 use App\Repository\GenderRepository;
+use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\HeadShopRepository;
 use App\Repository\SiteNameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class CartController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function index(SessionInterface $session, GenderRepository $genderRepository, CategoryRepository $categoryRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository): Response
+    public function index(SessionInterface $session, GenderRepository $genderRepository, CategoryRepository $categoryRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository): Response
     {
         $cart = $session->get('cart', []);
         $cartWithData = [];
@@ -25,6 +26,9 @@ class CartController extends AbstractController
         foreach($cart as $id => $quantity) {
             $cartWithData[] = [
                 'article' => $articleRepository->find($id),
+                'headshop' => $headShopRepository->findOneBy([], [
+                    'id' => 'DESC'
+                ]),
                 'quantity' => $quantity
             ];
         }
@@ -48,8 +52,10 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add/{id}", name="cart_add")
      */
-    public function add($id, SessionInterface $session)
+    public function add($id, SessionInterface $session, Request $request)
     {
+        $article = $request->request->get('id');
+        $user = $this->getUser();
         $cart = $session->get('cart', []);
         if(!empty($cart[$id])) {
             $cart[$id]++;

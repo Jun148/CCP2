@@ -1,0 +1,40 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}FootShop{% endblock %}
+
+{% block body %}
+<div class="show">
+    <h1>FootShop</h1>
+    <br>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ foot_shop.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ foot_shop.Title }}</td>
+            </tr>
+            <tr>
+                <th>Subtitle</th>
+                <td>{{ foot_shop.Subtitle }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ foot_shop.link }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ vich_uploader_asset(foot_shop.image, 'imageFile') }}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('foot_shop_index') }}">back to list</a>
+
+    <a href="{{ path('foot_shop_edit', {'id': foot_shop.id}) }}">edit</a>
+
+    {{ include('foot_shop/_delete_form.html.twig') }}
+</div>
+{% endblock %}

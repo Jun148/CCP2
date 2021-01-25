@@ -78,6 +78,16 @@ class Images
      */
     private $Productcare;
 
+    /**
+     * @ORM\OneToOne(targetEntity=HeadShop::class, inversedBy="image", cascade={"persist", "remove"})
+     */
+    private $headshop;
+
+    /**
+     * @ORM\OneToOne(targetEntity=FootShop::class, inversedBy="image", cascade={"persist", "remove"})
+     */
+    private $footshop;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -146,6 +156,30 @@ class Images
     public function setProductcare(?ProductCare $Productcare): self
     {
         $this->Productcare = $Productcare;
+
+        return $this;
+    }
+
+    public function getHeadshop(): ?HeadShop
+    {
+        return $this->headshop;
+    }
+
+    public function setHeadshop(?HeadShop $headshop): self
+    {
+        $this->headshop = $headshop;
+
+        return $this;
+    }
+
+    public function getFootshop(): ?FootShop
+    {
+        return $this->footshop;
+    }
+
+    public function setFootshop(?FootShop $footshop): self
+    {
+        $this->footshop = $footshop;
 
         return $this;
     }

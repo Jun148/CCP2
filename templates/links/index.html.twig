@@ -1,0 +1,40 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Links index{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>Links index</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Path</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for link in links %}
+            <tr>
+                <td>{{ link.id }}</td>
+                <td>{{ link.Name }}</td>
+                <td>{{ link.Path }}</td>
+                <td>
+                    <a href="{{ path('links_show', {'id': link.id}) }}" class="bg-info">show</a>
+                    <a href="{{ path('links_edit', {'id': link.id}) }}" class="bg-warning">edit</a>
+                    <a href="{{ path('links_delete', {'id': link.id}) }}" class="bg-danger">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('links_new') }}" class="bg-success">Create new</a>
+</div>
+{% endblock %}
