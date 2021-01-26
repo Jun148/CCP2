@@ -10,20 +10,18 @@
 
 <div class="options">
   <h3>Gender:</h3>
-  <div>
-    <input type="checkbox" id="men" name="men"
-         checked>
-    <label for="men">Men</label>
-  </div>
-  <div>
-    <input type="checkbox" id="women" name="women"
-         checked>
-    <label for="women">Women</label>
-  </div>
+  <form id="filters">
+    {% for gender in genders %}
+    <p>
+      <input type="checkbox" id="men" name="genders[]" id="gender{{gender.id}}" value="{{gender.id}}">
+      <label for="gender{{gender.id}}">{{gender.name}}</label>
+    </p>
+    {% endfor %}
+  </form>
 </div>
 
 <div class="articlecard-container">
-  {% for article in articles %}
+  {% for article in pagination %}
   <div class="articlecard">
     {% for image in article.images %}
     <img class="articlecard-image" src="{{ vich_uploader_asset(image) }}" alt="">
@@ -38,5 +36,8 @@
     </div>
   </div>
   {% endfor %}
+</div>
+<div class="paginator">
+  {{ knp_pagination_render(pagination) }}
 </div>
 {% endblock %}

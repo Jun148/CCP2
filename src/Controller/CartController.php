@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Entity\Cart;
+use DateTime;
 use App\Repository\GenderRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\CartRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\HeadShopRepository;
 use App\Repository\SiteNameRepository;
@@ -50,19 +54,31 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/cart/add/{id}", name="cart_add")
+     * @Route("/cart/add/{id}", name="cart_add", methods={"POST"})
      */
-    public function add($id, SessionInterface $session, Request $request)
+    public function add($id, SessionInterface $session, Request $request, Article $article)
     {
-        $article = $request->request->get('id');
+        $quantity = $request->request->get('qty');
         $user = $this->getUser();
-        $cart = $session->get('cart', []);
-        if(!empty($cart[$id])) {
-            $cart[$id]++;
+        if ($user === null)
+        {
+            $cart = $session->get('cart', []);
+            if(!empty($cart[$id])) {
+                $cart[$id]++;
+                } else {
+                $cart[$id] = $quantity;
+                $session->set('cart', $cart);
+            }
         } else {
-            $cart[$id] = 1;
+            $cart = (new Cart())
+                -> setQuantity($quantity)
+                -> setDate(new \DateTime('now'))
+                -> setUser($user)
+                -> addarticle($article);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cart);
+            $em->flush();
         }
-        $session->set('cart', $cart);
 
         return $this->redirectToRoute("cart");
     }

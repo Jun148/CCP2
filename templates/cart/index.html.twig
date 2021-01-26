@@ -19,9 +19,6 @@
         </thead>
         <tbody>
             {% for item in items %}
-            <pre>
-                {{ dump(item) }}
-            </pre>
             <tr>
                 {% for image in item.article.images %}
                 <td class="lib"><a href="{{ path('article_front', {'id': item.article.id}) }}" ><img src="{{ vich_uploader_asset(image) }}">{{ item.article.name }}</a></td>

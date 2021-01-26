@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\GenderRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\HeadShopRepository;
 use App\Repository\SiteNameRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,10 +19,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryFrontController extends AbstractController
 {
     /**
-     * @Route("/category/{name}", name="category_front")
+     * @Route("/category/{id}", name="category_front")
      */
-    public function index(CategoryRepository $categoryRepository, GenderRepository $genderRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository, $name): Response
+    public function index(CategoryRepository $categoryRepository, GenderRepository $genderRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository, $id, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
+        $pagination = $paginator->paginate(
+            $em->getRepository(Article::class)->findBy(array('category'=>$id)),
+            $request->query->getInt('page', 1),12
+        );
+        
         return $this->render('category_front/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
             'genders' => $genderRepository->findAll(),
@@ -27,11 +37,7 @@ class CategoryFrontController extends AbstractController
             'headshop' => $headShopRepository->findOneBy([], [
                 'id' => 'DESC'
             ]),
-            'articles' => $articleRepository->findBy([
-                'category' => $categoryRepository->findBy([
-                    'Name' => $name
-                ])
-            ])
+            'pagination' => $pagination
         ]);
     }
 }
