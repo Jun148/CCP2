@@ -11,6 +11,8 @@ use App\Repository\CartRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\HeadShopRepository;
 use App\Repository\SiteNameRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +24,7 @@ class CartController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function index(SessionInterface $session, GenderRepository $genderRepository, CategoryRepository $categoryRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository): Response
+    public function index(SessionInterface $session, GenderRepository $genderRepository, CategoryRepository $categoryRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository, EntityManagerInterface $em): Response
     {
         $cart = $session->get('cart', []);
         $cartWithData = [];
@@ -33,6 +35,7 @@ class CartController extends AbstractController
                 'quantity' => $quantity
             ];
         }
+        
 
         $total = 0;
         foreach($cartWithData as $item) {
@@ -59,9 +62,6 @@ class CartController extends AbstractController
     public function add($id, SessionInterface $session, Request $request, Article $article)
     {
         $quantity = $request->request->get('qty');
-        $user = $this->getUser();
-        if ($user === null)
-        {
             $cart = $session->get('cart', []);
             if(!empty($cart[$id])) {
                 $cart[$id]++;
@@ -69,16 +69,7 @@ class CartController extends AbstractController
                 $cart[$id] = $quantity;
                 $session->set('cart', $cart);
             }
-        } else {
-            $cart = (new Cart())
-                -> setQuantity($quantity)
-                -> setDate(new \DateTime('now'))
-                -> setUser($user)
-                -> addarticle($article);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cart);
-            $em->flush();
-        }
+       
 
         return $this->redirectToRoute("cart");
     }

@@ -187,7 +187,7 @@
 	text-align: center;
 }
 
-.cart-container h1{
+.cart-container h1, .order h1{
 	font-size: 4vw;
 	padding: 1vw;
 	font-weight: bold;
@@ -240,6 +240,64 @@
 	width: 30%;
 	margin: auto;
 	margin-bottom: 4vw;
+}
+
+#validate a {
+	color: white;
+}
+
+.order {
+	width: 50vw;
+	padding: 0.5vw;
+	margin: 2vw;
+}
+
+.order img {
+	width: 5%;
+	margin: 0.5vw;
+}
+
+.totprice {
+	float: right;
+}
+
+.tot {
+	background-color: black;
+	color: white;
+	float:right;
+}
+
+.orderline {
+	display: flex;
+	align-items: center;
+	margin-top: 2vw;
+}
+
+.articleprice {
+	font-weight: bold;
+}
+
+.delivery {
+	width: 20vw;
+	border: 1px solid black;
+	border-radius: 10px 10px;
+	padding: 0.5vw;
+	margin: 2vw;
+}
+
+.payment {
+	display: flex;
+	margin: auto;
+	width: 50vw;
+}
+
+.payment img {
+	width: 30%;
+}
+
+.checkpay {
+	display: flex;
+	align-items: center;
 }
 
 .profile {

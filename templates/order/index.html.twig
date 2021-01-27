@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order{% endblock %}
+
+{% block body %}
+<div class="order">
+    <h1>Order</h1>
+    {% for order in orders %}
+    {% for image in order.article.images %}
+    <div class="orderline">
+        <img src="{{ vich_uploader_asset(image) }}">
+        <p>{{order.article.name}} x {{order.quantity}}
+        <br><b>{{order.article.price}}</b></p>
+    </div>
+    <hr>
+    {% endfor %}
+    {% endfor %}
+    <div class="tot">
+        <h2>Order Total</h2>
+        <p>{{ total }}</p>
+    </div>
+</div>
+<form class="payment">
+    <div class="checkpay"><input type="checkbox" name="paypal"><label><img src="{{asset('assets/img/paypal.png')}}"></label></div>
+    <br>
+    <div class="checkpay"><input type="checkbox" name="CB"><label><img src="{{asset('assets/img/Logo_CB.png')}}"></label></div>
+</form>
+
+<div class="delivery">
+    <h2>Delivery Address</h1>
+    <hr>
+    <p>{{user.lastname}} {{user.firstname}}</p>
+    <p>{{user.address}}</p>
+    <p>{{user.zipcode}}</p>
+    <p>{{user.city}}</p>
+</div>
+{% endblock %}

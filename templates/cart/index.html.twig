@@ -46,8 +46,9 @@
             <td></td>
         </tfoot>
     </table>
-    <div><button type="submit" id="validate" class="btn btn-primary" href="#">Valider la commande</button></div>
+    <button id="validate" class="btn btn-primary"><a href="{{ path('order') }}">Order</a></button>
 </div>
+
 {% else %}
     <p class="emptycart"> Your cart is empty!</p>
 {% endif %}
