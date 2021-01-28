@@ -4,6 +4,11 @@
 
 {% block body %}
 <div class="order">
+    {% for message in app.flashes('error') %}
+    <div>
+        <div class="error"> {{message}}</div>
+    </div>
+    {% endfor %}
     <h1>Order</h1>
     {% for order in orders %}
     {% for image in order.article.images %}
@@ -16,22 +21,27 @@
     {% endfor %}
     {% endfor %}
     <div class="tot">
-        <h2>Order Total</h2>
-        <p>{{ total }}</p>
+        <p>Order Total : {{ total }}</p>
     </div>
-</div>
-<form class="payment">
-    <div class="checkpay"><input type="checkbox" name="paypal"><label><img src="{{asset('assets/img/paypal.png')}}"></label></div>
     <br>
-    <div class="checkpay"><input type="checkbox" name="CB"><label><img src="{{asset('assets/img/Logo_CB.png')}}"></label></div>
-</form>
-
-<div class="delivery">
-    <h2>Delivery Address</h1>
-    <hr>
-    <p>{{user.lastname}} {{user.firstname}}</p>
-    <p>{{user.address}}</p>
-    <p>{{user.zipcode}}</p>
-    <p>{{user.city}}</p>
+    <div class="delivery">
+        <h2>Delivery Address</h1>
+        <hr>
+        <p>{{user.lastname}} {{user.firstname}}</p>
+        <p>{{user.address}}</p>
+        <p>{{user.zipcode}}</p>
+        <p>{{user.city}}</p>
+    </div>
+    <br>
+    <form class="payment" method="POST" action="{{path('order_validation')}}">
+        <div class="paymentMethod">
+            <div class="checkpay"><input type="radio" name="payment" value="paypal"><label for="paypal"><img src="{{asset('assets/img/paypal.png')}}"></label></div>
+            <div class="checkpay"><input type="radio" name="payment" value="CB"><label for="CB"><img src="{{asset('assets/img/Logo_CB.png')}}"></label></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Buy</button>
+    </form>
 </div>
+
+
+
 {% endblock %}

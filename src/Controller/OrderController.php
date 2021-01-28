@@ -23,6 +23,11 @@ class OrderController extends AbstractController
     {
         $user = $this->getUser();
         $cart = $session->get('cart', []);
+        if(!$cart){
+            return $this->redirectToRoute("cart");
+        }
+
+        else {
         $cartWithData = [];
 
         foreach($cart as $id => $quantity) {
@@ -50,5 +55,67 @@ class OrderController extends AbstractController
             'orders' => $cartWithData,
             'total' => $total
         ]);
+            }
     }
+
+    /**
+     * @Route("/order/validation", name="order_validation")
+     */
+    public function validation(GenderRepository $genderRepository, CategoryRepository $categoryRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository, SessionInterface $session, ArticleRepository $articleRepository, Request $request): Response
+    {
+        $user = $this->getUser();
+        $cart = $session->get('cart', []);
+        if(!$cart){
+            return $this->redirectToRoute("cart");
+        }else{
+        $cartWithData = [];
+
+        foreach($cart as $id => $quantity) {
+            $cartWithData[] = [
+                'article' => $articleRepository->find($id),
+                'quantity' => $quantity
+            ];
+        }
+
+        $total = 0;
+        foreach($cartWithData as $order) {
+            $totalItem = $order['article']->getPrice() * $order['quantity'];
+            $total += $totalItem;
+        }
+
+        $article=$order['article'];
+        
+        if($request->isMethod('POST')){
+            $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            $payment = $request->get('payment');
+            $order = (new Order())
+                -> setPayment($payment)
+                -> setDate(new \DateTime('now'))
+                -> setUpdatedAt(new \DateTime('now'))
+                -> setUser($user)
+                -> setStatus('Pending')
+                -> addArticle($article);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($order);
+            $em->flush();
+            $cart = $session->remove('cart');
+
+
+        }else{
+            $this->addFlash('error', 'One of the fields is not valid');
+        }
+
+        return $this->render('order/validation.html.twig', [
+            'genders' => $genderRepository->findAll(),
+            'categories' => $categoryRepository->findAll(),
+            'sitename' => $siteNameRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+            'headshop' => $headShopRepository->findOneBy([], [
+                'id' => 'DESC'
+            ]),
+        ]);
+
+    }}
 }

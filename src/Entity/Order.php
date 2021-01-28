@@ -46,6 +46,11 @@ class Order
      */
     private $Updated_At;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Payment;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -130,6 +135,18 @@ class Order
     public function setUpdatedAt(\DateTimeInterface $Updated_At): self
     {
         $this->Updated_At = $Updated_At;
+
+        return $this;
+    }
+
+    public function getPayment(): ?string
+    {
+        return $this->Payment;
+    }
+
+    public function setPayment(string $Payment): self
+    {
+        $this->Payment = $Payment;
 
         return $this;
     }

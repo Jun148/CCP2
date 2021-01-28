@@ -4,36 +4,39 @@
 <div class="container">
     <div class="card col-12">
         <div class="card-body">
-            <h1 class="display-5">Message de {{ contact.fullname }}</h1>
+            <h1 class="display-5">Order from {{ order.user.lastname}} {{ order.user.firstname }}</h1>
 
             <table class="table">
                 <tbody>
                 <tr>
-                    <th>Email</th>
-                    <td>{{ contact.email }}</td>
+                    <th>Address</th>
+                    <td>{{ order.user.lastname }} {{order.user.firstname}}, {{order.user.address}} {{order.user.zipcode}} {{order.user.city}}</td>
                 </tr>
                 <tr>
-                    <th>Subject</th>
-                    <td>{{ contact.subject}}</td>
+                    <th>Payment</th>
+                    <td>{{ order.payment}}</td>
                 </tr>
                 <tr>
-                    <th>Message</th>
-                    <td>{{ contact.comment }}</td>
+                    <th>Order</th>
+                    {% for article in order.articles %}
+                    <td>{{ article.name }}</td>
+                    {% endfor %}
                 </tr>
                 <tr>
-                    <th>Reply</th>
-                    {% if contact.reply == null %}
+                    <th>Status</th>
+                    {% if order.status == "Pending" %}
                     <td>
                         {{ form_start(form) }}
                         {{ form_widget(form) }}
+                        <br>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Reply</button>
+                            <button type="submit" class="btn btn-success">Change</button>
                         </div>
                         {{ form_end(form) }}
                     </td>
                     {% else %}
                     <td>
-                        {{ contact.reply|raw }}
+                        {{ order.status }}
                     </td>
                     {% endif %}
                 </tr>
@@ -41,6 +44,6 @@
             </table>            
         </div>
     </div>
-    <a href="{{ path('inbox') }}">back to list</a>
+    <a href="{{ path('order_managment') }}">back to list</a>
 </div>
 {% endblock %}

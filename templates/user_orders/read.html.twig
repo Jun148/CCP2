@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    {% for message in app.flashes('message') %}
+    <div>
+        <div class="message"> {{message}}</div>
+    </div>
+    {% endfor %}
+    <div class="card col-12">
+        <div class="card-body">
+            <h1 class="display-5">Order N°00000{{ order.id}}</h1>
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Date</th>
+                    <td>{{order.date|date("d/m/Y à H:i:s", "Europe/Paris")}}</td>
+                </tr>
+                <tr>
+                    <th>Article</th>
+                    {% for article in order.articles %}
+                    <td>{{article.name}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{order.status}}</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        {% if order.status != 'Sent' and order.status != 'Cancelled' %}
+                        <form method="post">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" name="status" value="Cancelled">Cancel</button>
+                        </div>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>            
+        </div>
+    </div>
+    <a href="{{ path('user_orders') }}">back to list</a>
+</div>
+<br><br>
+{% endblock %}

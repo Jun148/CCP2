@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Orders{% endblock %}
+
+{% block body %}
+<div class="userOrders">
+    <h1>Your orders</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Date</th>
+                <th>Article</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>00000{{order.id}}</td>
+                <td>{{order.date|date("d/m/Y à H:i:s", "Europe/Paris")}}</td>
+                {% for article in order.articles %}
+                <td>{{article.name}}</td>
+                {% endfor %}
+                <td>{{order.status}}</td>
+                <td><a class="btn btn-sm btn-primary" href="{{ path('user_orders_read', {'id': order.id}) }}">Show</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Hello OrderManagmentController!{% endblock %}
+
+{% block body %}
+<div class="index">
+    <h1>Messages Clients</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Payment</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </thead>
+
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user.firstname}} {{order.user.lastname}}</td>
+                <td>{{ order.date|date("d/m/Y à H:i:s", "Europe/Paris") }}</td>
+                <td>{{ order.payment }}</td>
+                <td>{{ order.status }}</td>
+                <td><a href="{{ path('read_order', {'id':order.id}) }}" class="btn btn-sm btn-success">Check</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
