@@ -1,0 +1,13 @@
+Bug:
+------>	Je n'ai pas utilisé la table Panier car problème dans mon MCD d'origine.
+	Probablement venant de mes relations, je ne pouvais pas ajouter plus d'un
+	article dans le panier, l'enregistrement dans la table me notifiait un problème
+	de duplicata dans l'user ID. Utilisation de la session!
+	J'ai aussi pas mal cogité pour utiliser la session pour les utilisateurs non
+	connectés jusqu'à la validation du panier et l'enregistrement dès ajout panier 
+	pour les utilisateurs connectés mais je me mélangais les pinceaux donc j'ai
+	gardé uniquement la session.
+
+------> la table order ne peut être reliée qu'à un article à la fois. Elle prend le second du panier
+	à chaque fois. J'ai dû oublier un foreach quelquepart ou une merde dans mes relations encore une
+	fois.
