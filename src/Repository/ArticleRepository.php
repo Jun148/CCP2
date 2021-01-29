@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Article;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Data\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,44 @@ class ArticleRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
+    }
+
+    /**
+     * Récupère les articles en lien avec une recherche
+     * @return Article[]
+     */
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('a')
+            ->select('g', 'a')
+            ->join('a.gender', 'g');
+        
+        if(!empty($search->q)) {
+            $query = $query
+                ->andWhere('a.Name LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if(!empty($search->min)) {
+            $query = $query
+                ->andWhere('a.Price >= :min')
+                ->setParameter('min', $search->min);
+        }
+
+        if(!empty($search->max)) {
+            $query = $query
+                ->andWhere('a.Price <= :max')
+                ->setParameter('max', $search->max);
+        }
+
+        if(!empty($search->gender)) {
+            $query = $query
+                ->andWhere('g.id IN (:genders)')
+                ->setParameter('genders', $search->genders);
+        }
+
+        return $query->getQuery()->getResult();
     }
     
     // /**

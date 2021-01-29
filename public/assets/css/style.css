@@ -88,7 +88,7 @@
 
 .options {
 	float: left;
-	width: 15%;
+	width: 15vw;
 	height: 40vw;
 	background: rgb(167,167,167);
 	background: linear-gradient(180deg, rgba(109,122,113,1) 0%, rgba(255,255,255,1) 100%);
@@ -102,6 +102,15 @@
 	font-size: 1vw;
 	font-weight: bold;
 	margin-bottom: 0.5vw;
+}
+
+.options button {
+	width: 100%;
+}
+
+.priceRange {
+	display: flex;
+	justify-content: center;
 }
 
 .articlecard-container {

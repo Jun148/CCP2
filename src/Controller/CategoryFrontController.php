@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Data\SearchData;
 use App\Entity\Category;
+use App\Form\SearchFormType;
 use App\Repository\GenderRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
@@ -23,6 +25,10 @@ class CategoryFrontController extends AbstractController
      */
     public function index(CategoryRepository $categoryRepository, GenderRepository $genderRepository, ArticleRepository $articleRepository, SiteNameRepository $siteNameRepository, HeadShopRepository $headShopRepository, $id, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
+        $data = new SearchData();
+        $form = $this->createForm(SearchFormType::class, $data);
+        $form->handleRequest($request);
+        $articles = $articleRepository->findSearch($data);
         $pagination = $paginator->paginate(
             $em->getRepository(Article::class)->findBy(array('category'=>$id)),
             $request->query->getInt('page', 1),12
@@ -37,7 +43,9 @@ class CategoryFrontController extends AbstractController
             'headshop' => $headShopRepository->findOneBy([], [
                 'id' => 'DESC'
             ]),
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'articles' => $articles,
+            'form' => $form->createView()
         ]);
     }
 }

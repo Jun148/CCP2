@@ -9,15 +9,20 @@
 </div>
 
 <div class="options">
-  <h3>Gender:</h3>
-  <form id="filters">
-    {% for gender in genders %}
-    <p>
-      <input type="checkbox" id="men" name="genders[]" id="gender{{gender.id}}" value="{{gender.id}}">
-      <label for="gender{{gender.id}}">{{gender.name}}</label>
-    </p>
-    {% endfor %}
-  </form>
+  {{ form_start(form) }}
+    {{form_row(form.q)}}
+    <br><br>
+    <h3>Genders</h3>
+    {{form_row(form.genders)}}
+    <br><br>
+    <h3>Price</h3>
+    <div class="priceRange">
+      {{form_row(form.min)}}
+      {{form_row(form.max)}}
+    </div>
+    <br><br>
+    <button type="submit" class="btn btn-primary">Filter</button>
+  {{ form_end(form) }}
 </div>
 
 <div class="articlecard-container">
@@ -31,6 +36,8 @@
       <h5 class="articlecard-name">{{ article.name }}</h5>
       <br>
       <p class="articlecard-description">{{ article.description }}</p>
+      <br>
+      <p class="articlecard-price"><b>{{article.price }}$</b></p>
       <br>
       <a class="btn btn-primary" href="{{ path('article_front', {'id': article.id}) }}">Check more</a>
     </div>
